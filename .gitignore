@@ -1,0 +1,19 @@
+# ignore node_modules directory
+node_modules/
+
+# ignore local MongoDB database files
+*.log
+*.mdb
+*.db
+*.lock
+
+# ignore environment variables
+.env
+
+# ignore build artifacts
+dist/
+build/
+
+# ignore npm-debug.log and yarn-error.log files
+npm-debug.log*
+yarn-error.log*
