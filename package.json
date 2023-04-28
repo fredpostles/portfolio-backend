@@ -8,15 +8,16 @@
     "netlify-lambda": "^2.0.16"
   },
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "netlify-lambda build src/functions"
   },
   "netlify": {
     "functions": {
       "main": "index.js"
     },
     "build": {
-      "command": "npm install && npm run build",
-      "functions": "src/functions"
+      "command": "npm run build",
+      "functions": "functions"
     }
   }
 }
