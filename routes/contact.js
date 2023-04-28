@@ -1,25 +1,26 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-
-//import user schema
-const contactSchema = require("../mongoose/schemas");
-
-const Contact = mongoose.model("Contact", contactSchema);
+const { queries } = require("../mongoose/connection");
 
 router.post("/", async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
-    const newContact = new Contact({
-      name,
-      email,
-      message,
-    });
+    const result = await queries.addMessage(name, email, message);
 
-    await newContact.save();
+    if (result.id) {
+      res.status(201).json({ message: "Message sent successfully" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
-    res.status(201).json({ message: "Message sent successfully" });
+router.get("/", async (req, res) => {
+  try {
+    const messages = await queries.getMessages();
+    res.status(200).json(messages);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Server error" });
