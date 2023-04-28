@@ -23,7 +23,5 @@ db.on("error", console.error.bind(console, "connection error:"));
 
 // start server once conncetion is open
 db.once("open", () => {
-  app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
-  });
+  module.exports = app;
 });
