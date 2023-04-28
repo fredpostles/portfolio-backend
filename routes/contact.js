@@ -9,7 +9,9 @@ router.post("/", async (req, res) => {
     const result = await queries.addMessage(name, email, message);
 
     if (result.id) {
-      res.status(201).json({ message: "Message sent successfully" });
+      res
+        .status(201)
+        .json({ message: "Message sent successfully", result: message });
     }
   } catch (error) {
     console.log(error);
