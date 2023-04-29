@@ -1,7 +1,14 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const { db } = require("./mongoose/connection"); //import the connection
 const cors = require("cors");
+
+const corsOptions = {
+  origin: process.env.APP_URL,
+};
+
+app.use(cors(corsOptions));
 
 // middleware
 app.use(cors());
