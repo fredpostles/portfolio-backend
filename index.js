@@ -4,13 +4,7 @@ const app = express();
 const { db } = require("./mongoose/connection"); //import the connection
 const cors = require("cors");
 
-// const corsOptions = {
-//   origin: process.env.APP_URL,
-// };
-
-// app.use(cors(corsOptions));
-
-// middleware
+// MIDDLEWARE
 app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", `${process.env.APP_URL}`);
@@ -21,7 +15,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-// routes
+// ROUTES
 app.use("/contact", require("./routes/contact"));
 
 // set port
