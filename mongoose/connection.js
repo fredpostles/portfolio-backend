@@ -4,11 +4,8 @@ require("dotenv").config();
 // import mongoose
 const mongoose = require("mongoose");
 
-// get API URL from env
-const API_URL = process.env.API_URL;
-
 // Connect to the MongoDB database using mongoose
-mongoose.connect(API_URL, {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: false,
 });
 
