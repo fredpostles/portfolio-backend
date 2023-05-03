@@ -12,7 +12,22 @@ router.get('/', (req, res) => {
   res.end();
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
-router.post('/', (req, res) => res.json({ postBody: req.body }));
+router.post('/', (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    const result = await queries.addMessage(name, email, message);
+
+    if (result.id) {
+      res
+        .status(201)
+        .json({ message: "Message sent successfully", result: message });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
