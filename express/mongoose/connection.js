@@ -1,5 +1,5 @@
 // import dotenv to access en variables
-require("dotenv").config();
+// require("dotenv").config();
 
 // import mongoose
 const mongoose = require("mongoose");
