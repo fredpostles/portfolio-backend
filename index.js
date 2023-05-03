@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const { db } = require("./mongoose/connection"); //import the connection
 const cors = require("cors");
+const serverless = require("serverless-http");
 
 // MIDDLEWARE
 app.use(cors());
@@ -33,3 +34,5 @@ db.once("open", () => {
 });
 
 module.exports = app;
+
+module.exports.handler = serverless(app);
