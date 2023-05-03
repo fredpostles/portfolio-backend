@@ -7,7 +7,8 @@ const cors = require("cors");
 // MIDDLEWARE
 app.use(cors());
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", `${process.env.APP_URL}`);
+  // uncomment below line when finished development
+  // res.setHeader("Access-Control-Allow-Origin", `${process.env.APP_URL}`);
   res.setHeader("Access-Control-Allow-Methods", "GET, POST");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
@@ -26,5 +27,9 @@ db.on("error", console.error.bind(console, "connection error:"));
 
 // start server once conncetion is open
 db.once("open", () => {
-  module.exports = app;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 });
+
+module.exports = app;

@@ -17,7 +17,7 @@ db.on("error", (error) => {
   console.log("An error occured when connecting.", error);
 });
 db.once("open", () => {
-  console.log("Connection working!");
+  console.log("Connected to MongoDB");
 });
 
 // DB schema
