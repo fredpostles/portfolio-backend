@@ -8,8 +8,7 @@ const cors = require("cors");
 app.use(cors());
 
 app.use((req, res, next) => {
-  // uncomment below line when finished development
-  // res.setHeader("Access-Control-Allow-Origin", `${process.env.APP_URL}`);
+  res.setHeader("Access-Control-Allow-Origin", `${process.env.APP_URL}`);
   res.setHeader("Access-Control-Allow-Methods", "GET, POST");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
