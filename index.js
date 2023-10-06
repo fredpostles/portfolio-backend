@@ -8,9 +8,16 @@ const cors = require("cors");
 app.use(cors());
 
 app.use((req, res, next) => {
-res.setHeader("Access-Control-Allow-Origin", "https://fredpostles.com");  
-res.setHeader("Access-Control-Allow-Methods", "GET, POST");
-res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  // Allow specific routes and origins
+  const allowedOrigins = ["https://fredpostles.com", "https://api.fredpostles.com"];
+  const currentOrigin = req.headers.origin;
+  
+  if (allowedOrigins.includes(currentOrigin)) {
+    res.setHeader("Access-Control-Allow-Origin", currentOrigin);
+  }
+
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
 
